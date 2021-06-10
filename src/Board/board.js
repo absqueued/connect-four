@@ -10,6 +10,7 @@ import { APP_DEFAULTS, GAME_STATE } from "../constants";
 const BoardGrid = ({ currentPlayer, onPlayerMoves }) => {
   const rows = Array.from({ length: APP_DEFAULTS.rows });
   const cols = Array.from({ length: APP_DEFAULTS.cols });
+
   const [allUsers, setAllUsers] = useState({});
   const [positions, setPositions] = useState([]);
   const [gameState, setGameState] = useState(GAME_STATE.start);
@@ -60,12 +61,19 @@ const BoardGrid = ({ currentPlayer, onPlayerMoves }) => {
     }
   };
 
+  const unDo = () => {
+    setPositions(pos => pos.slice(0, pos.length - 1));
+    changeTurn(currentPlayer);
+  }
+
   useEffect(() => {
     let x, y;
     const checkWinState = (positions) => {
       const allCombos = new Set(
         positions.map((pos) => [pos.x, pos.y].join(pos.p))
       );
+
+      //3blue5
 
       for (let pos of positions) {
         for ([x, y] of [
@@ -98,7 +106,9 @@ const BoardGrid = ({ currentPlayer, onPlayerMoves }) => {
 
   return (
     <article>
+      
       {gameState !== GAME_STATE.playing && <h1>Winner is: {gameState}</h1>}
+
       <div className={`board-grid board-grid--${currentPlayer}`}>
         {cols.map((c, x) => (
           <div key={uuidv4()} className="box-row">
@@ -116,6 +126,9 @@ const BoardGrid = ({ currentPlayer, onPlayerMoves }) => {
             })}
           </div>
         ))}
+        <div>
+            <button className="btn-tb btn-tb--p" onClick={()=> unDo()}>Undo</button>
+          </div>
       </div>
     </article>
   );
