@@ -8,15 +8,15 @@ import { GAME_STATE } from "../constants";
 
 const BoardFooter = ({onChange}) => {
   const reset = () => {
-    localforage.clear();
     onChange(false);
   };
 
   const quit = () => {
-    localforage.setItem(GAME_STATE.start, false).then(v => {
-      onChange(v);
+    localforage.clear().then(() => {
+      localforage.setItem(GAME_STATE.start, false).then(v => {
+        onChange(v);
+      });
     });
-    log("Quit");
   };
   return (
     <footer>

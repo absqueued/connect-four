@@ -9,6 +9,9 @@ const APP_DEFAULTS = {
 
 const GAME_STATE = {
   start: "game.start",
+  draw: "game.draw",
+  playing: "game.playing",
+  won: "game.won",
 };
 
 export { APP_DEFAULTS, GAME_STATE };
