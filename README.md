@@ -1,4 +1,5 @@
-# Connect Four
-A board game, [Connect four](https://en.wikipedia.org/wiki/Connect_Four), implemented in JavaScript.
+<div align="center">
+    <img src="./cover.png" alt="Connect Four game bop animated icon" height="200px" />
+    <h1>Connect Four </h1>
+</div>
 
-Requested from special plance in Norway. 
