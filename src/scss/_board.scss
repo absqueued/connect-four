@@ -1,0 +1,148 @@
+/** Board */
+/**
+ * CSS Gradients, 
+ * Courtesy of https://cssgradient.io/gradient-backgrounds/
+ */
+@use "sass:math";
+
+.board {
+  width: 100%;
+  height: 100%;
+}
+
+.board > header {
+  background-color: black;
+  color: whitesmoke;
+  height: $nav;
+  padding: 1.2rem 2rem 0;
+  display: flex;
+  justify-content: space-between;
+
+  @media screen and (max-width: $handheld) {
+    height: $nav-m;
+    padding-top: 1rem;
+  }
+}
+
+.board > article {
+  height: calc(100% - #{$nav + $footer + $footer-gap});
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  @media screen and (max-width: $handheld) {
+    height: calc(100% - #{$nav-m + $footer + $footer-gap});
+  }
+
+}
+
+.board-grid {
+  background-image: $gray;
+  border-radius: 1rem;
+  box-shadow: inset -4px -4px 0 rgba(0, 0, 0, 0.21);
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  width: 44rem;
+  padding: 1rem;
+
+  @media screen and (max-width: $handheld) {
+    width: calc(100% - 2rem);
+    max-width: 700px;    
+  }
+}
+
+.board-grid--red .box--eligible:hover {
+  background-image: $red;
+}
+.board-grid--blue .box--eligible:hover {
+  background-image: $blue;
+}
+
+.box {
+  width: 5rem;
+  height: 5rem;
+  margin: 1rem 0.5rem;
+  position: relative;
+  border-radius: 50%;
+  font-size: 10px;
+  text-align: center;
+  line-height: 5rem;
+  border: 2px solid white;
+  transition: all 0.3s cubic-bezier(0.39, 0.575, 0.565, 1);
+  background-color: rgb(29, 29, 29);
+  cursor: pointer;
+  color: #999;
+
+  @media screen and (max-width: $handheld) {
+    width: calc(100% - 10px);
+    height: 0;
+    padding-bottom: calc(95% - 10px);
+    margin: 5px;
+  }
+}
+.box:hover {
+  background-color: rgb(75, 75, 75);
+  box-shadow: inset 0px -4px 0 rgba(255, 255, 255, 0.75);
+}
+.box--blue {
+  background-image: $blue;
+}
+.box--red {
+  background-image: $red
+}
+
+.box-row{
+  @media screen and (max-width: $handheld) {
+    width: calc(100% / 7);
+  }
+
+  &:hover {
+    background: rgba(0, 0, 0, 0.1);
+    border-radius: 5px;
+  }
+}
+
+.player {
+  font-size: 1rem;
+  font-weight: bold;
+  position: relative;
+  padding-left: 2.5rem;
+}
+
+.player::before {
+  content: ' ';
+  display: block;
+  background-image: $gray;
+  width: 1.5rem;
+  height: 1.5rem;
+  border-radius: 50%;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.player--red::before {
+  background-image: $red;
+}
+.player--blue::before {
+  background-image: $blue;
+}
+
+.board > footer {
+  background-image: linear-gradient(to right, #434343 0%, black 100%);
+  margin: 1rem;
+  border-radius: 5px;
+  display: flex;
+  justify-content: center;
+  height: $footer;
+
+  @media screen and (max-width: $handheld) {
+    justify-content: stretch;
+
+    .btn-tb {
+      flex: 0 1 100%;
+    }
+  }
+}

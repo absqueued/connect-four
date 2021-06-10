@@ -1,0 +1,102 @@
+@use 'vars';
+
+/** Buttons */
+
+.btn {
+  &-start {
+    position: relative;
+    display: inline-block;
+    padding: 20px 40px;
+    color: white;
+    vertical-align: middle;
+    text-decoration: none;
+    font-size: 1.5rem;
+    font-weight: bold;
+    transition: all 0.5s;
+    background-color: #3498db;
+    border: 0;
+    outline: none;
+    cursor: pointer;
+    text-transform: uppercase;
+
+    &::after,
+    &::before {
+      position: absolute;
+      content: "";
+      transition: all 0.5s;
+    }
+  
+    &::before {
+      bottom: -15px;
+      height: 15px;
+      width: 100%;
+      left: 8px;
+      transform: skewX(45deg);
+      background-color: #196090;
+    }
+  
+    &::after {
+      right: -15px;
+      height: 100%;
+      width: 15px;
+      bottom: -8px;
+      transform: skewY(45deg);
+      background-color: #124364;
+    }
+  
+    &:active {
+      margin-left: 10px;
+      margin-top: 10px;
+    }
+  
+    &:active::before {
+      bottom: -5px;
+      height: 5px;
+      left: 3px;
+    }
+  
+    &:active::after {
+      right: -5px;
+      width: 5px;
+      bottom: -3px;
+    }
+
+    @media screen and (max-width: $handheld) {
+      margin-top: 3rem;
+    }
+  } // start-end
+
+  &-tb {
+    margin: 10px;
+    padding: 15px 45px;
+    text-align: center;
+    text-transform: uppercase;
+    transition: 0.5s;
+    background-size: 200% auto;
+    color: white;
+    border: 0;
+    border-radius: 5px;
+    display: block;
+    cursor: pointer;
+    
+    &--p {
+      background-image: linear-gradient(
+        to right,
+        #1fa2ff 0%,
+        #12d8fa 51%,
+        #1fa2ff 100%
+      );
+    }
+    
+    &--d {
+      background-image: $red;
+    }
+    
+    &:hover {
+      background-position: right center; /* change the direction of the change here */
+      color: #fff;
+      text-decoration: none;
+    }
+  } // btn-tb (aka btn-toolbar) 
+
+}
